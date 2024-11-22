@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import React from 'react';
+import {Fonts} from "../../../GlobalStyles.tsx";
 
 const {width} = Dimensions.get('window');
 const SmallCard = ({icon, title}: { icon: any, title: String }) => {
@@ -20,14 +21,14 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#0d0422',
 		padding: 10,
-		borderRadius: 16,
+		borderRadius: 8,
 		gap: 8,
 		width: width / 2.8,
 	},
 	midBarDataText: {
 		fontSize: 18,
 		color: 'white',
-		fontWeight: 'bold',
+		fontFamily: Fonts.montserratBold,
 	},
 	icon: {
 		height: 24,
