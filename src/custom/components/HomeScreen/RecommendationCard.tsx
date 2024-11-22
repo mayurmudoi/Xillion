@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import {Fonts} from "../../../GlobalStyles.tsx";
 
 const RecommendationCard = () => {
 	return (
@@ -51,19 +52,21 @@ const styles = StyleSheet.create({
 		paddingVertical: 8,
 		paddingHorizontal: 8,
 		borderRadius: 16,
-		marginVertical: 6,
+		marginVertical: 4,
 	},
 	stockData: {
-		fontSize: 24,
+		fontSize: 20,
 		color: 'white',
+		fontFamily: Fonts.montserratSemiBold,
 	},
 	optionsText: {
 		color: 'lightgrey',
 		fontSize: 16,
+		fontFamily: Fonts.montserratMedium,
 	},
 	priceText: {
 		color: 'white',
 		fontSize: 16,
-		fontWeight: 'bold',
+		fontFamily: Fonts.montserratSemiBold,
 	},
 });
