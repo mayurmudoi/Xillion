@@ -1,20 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, FlatList, Dimensions, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallCard from '../custom/components/HomeScreen/SmallCard';
 import RecommendationCard from '../custom/components/HomeScreen/RecommendationCard';
 import ExecuteComponent from '../custom/components/HomeScreen/ExecuteComponent.tsx';
+import {useNavigation} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 
 const recommendations = Array(10).fill({});
 
 const HomeScreen = () => {
+	const navigation = useNavigation();
 	return (
-		<ScrollView style={styles.fullscreen} showsVerticalScrollIndicator={false}>
+		<View style={styles.fullscreen}>
 			<View style={styles.headerContainer}>
 				<LinearGradient
-					colors={['#C525FF', '#391FDC']}
+					colors={['#670989', '#391FDC']}
 					style={styles.linearGradient}
 					start={{x: 0, y: 0.1}}
 					end={{x: 0, y: 1}}
@@ -44,6 +46,7 @@ const HomeScreen = () => {
 				<View style={styles.recommendationContainer}>
 					<FlatList
 						data={recommendations}
+						nestedScrollEnabled={true}
 						renderItem={() => <RecommendationCard/>}
 						keyExtractor={(item, index) => index.toString()}
 						showsVerticalScrollIndicator={false}
@@ -53,11 +56,9 @@ const HomeScreen = () => {
 						On executing this basket, buy orders along with stop loss and target will be placed.
 					</Text>
 				</View>
-				<View style={styles.executeContainer}>
-					<ExecuteComponent/>
-				</View>
+				<ExecuteComponent navigation={navigation}/>
 			</View>
-		</ScrollView>
+		</View>
 	);
 };
 
@@ -135,10 +136,10 @@ const styles = StyleSheet.create({
 	},
 	recommendationContainer: {
 		backgroundColor: '#585065',
-		width: width * 0.9,
-		height: height * 0.45,
+		width: width,
+		height: height * 0.4,
 		borderRadius: width * 0.05,
-		padding: width * 0.04,
+		padding: width * 0.02,
 		marginVertical: height * 0.02,
 	},
 	recommendationText: {
@@ -146,15 +147,9 @@ const styles = StyleSheet.create({
 		color: 'white',
 		textAlign: 'justify',
 		marginTop: height * 0.01,
+		padding: width * 0.01,
 	},
-	executeContainer: {
-		backgroundColor: '#fff',
-		width: width * 0.7,
-		height: height * 0.08,
-		borderRadius: 40,
-		justifyContent: 'center',
-		// alignItems: 'center',
-	},
+
 });
 
 export default HomeScreen;
