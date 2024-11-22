@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, FlatList, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, Dimensions} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallCard from '../custom/components/HomeScreen/SmallCard';
 import RecommendationCard from '../custom/components/HomeScreen/RecommendationCard';
 import ExecuteComponent from '../custom/components/HomeScreen/ExecuteComponent.tsx';
 import {useNavigation} from '@react-navigation/native';
+import {Fonts} from '../GlobalStyles.tsx';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const {width, height} = Dimensions.get('window');
 
@@ -29,12 +31,13 @@ const HomeScreen = () => {
 					<View style={styles.fundsInfoContainer}>
 						<Text style={styles.portfolioTitle}>Current Portfolio</Text>
 						<View style={styles.fundsInfoRow}>
-							<Text style={styles.amountText}>₹2,00,000</Text>
+							<Text style={styles.amountText}>₹ 2,00,000</Text>
 							<Image source={require('../assets/icons/refresh.png')} style={styles.icon}/>
 						</View>
 						<Text style={styles.unusedFundsLabel}>Unused Funds</Text>
-						<Text style={styles.unusedFundsAmount}>₹1,00,000</Text>
+						<Text style={styles.unusedFundsAmount}>₹ 1,00,000</Text>
 					</View>
+
 				</LinearGradient>
 			</View>
 			<View style={styles.midBarContainer}>
@@ -56,7 +59,9 @@ const HomeScreen = () => {
 						On executing this basket, buy orders along with stop loss and target will be placed.
 					</Text>
 				</View>
-				<ExecuteComponent navigation={navigation}/>
+				<GestureHandlerRootView>
+					<ExecuteComponent navigation={navigation}/>
+				</GestureHandlerRootView>
 			</View>
 		</View>
 	);
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#201831',
 	},
 	headerContainer: {
-		height: height * 0.3,
+		height: height * 0.26,
 	},
 	linearGradient: {
 		flex: 1,
@@ -87,57 +92,65 @@ const styles = StyleSheet.create({
 	},
 	headerText: {
 		color: 'white',
-		fontSize: width * 0.06,
-		fontWeight: 'bold',
+		fontSize: width * 0.08,
+		fontFamily: Fonts.montserratMedium,
+		letterSpacing: 2,
 	},
 	fundsInfoContainer: {
 		alignItems: 'center',
+		padding: width * 0.02,
 	},
 	portfolioTitle: {
 		color: 'white',
 		fontSize: width * 0.045,
+		fontFamily: Fonts.montserratRegular,
 	},
 	fundsInfoRow: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginVertical: height * 0.01,
+		marginBottom: height * 0.01,
 	},
 	amountText: {
 		color: 'white',
 		fontSize: width * 0.08,
-		fontWeight: 'bold',
 		marginRight: width * 0.02,
+		fontFamily: Fonts.montserratSemiBold,
 	},
 	unusedFundsLabel: {
 		color: 'white',
-		fontSize: width * 0.045,
+		fontSize: width * 0.040,
+		fontFamily: Fonts.montserratRegular,
 	},
 	unusedFundsAmount: {
 		color: 'white',
 		fontSize: width * 0.045,
-		fontWeight: 'bold',
 		marginTop: height * 0.005,
+		fontFamily: Fonts.montserratSemiBold,
 	},
 	midBarContainer: {
 		flexDirection: 'row',
 		justifyContent: 'center',
 		gap: width * 0.05,
-		marginVertical: height * 0.02,
+		position: 'absolute',
+		bottom: height * 0.73,
+		left: width / 2,
+		right: width / 2,
 	},
 	contentContainer: {
 		flex: 1,
 		alignItems: 'center',
+		marginTop: height * 0.26 / 6,
 	},
 	mainText: {
-		fontSize: width * 0.06,
+		fontSize: width * 0.056,
 		color: 'white',
-		fontWeight: 'bold',
-		marginVertical: height * 0.01,
+		fontFamily: Fonts.montserratSemiBold,
+		marginTop: height * 0.01,
 	},
 	recommendationContainer: {
 		backgroundColor: '#585065',
-		width: width,
-		height: height * 0.4,
+		width: width * 0.96,
+		height: height * 0.51,
 		borderRadius: width * 0.05,
 		padding: width * 0.02,
 		marginVertical: height * 0.02,
@@ -148,8 +161,8 @@ const styles = StyleSheet.create({
 		textAlign: 'justify',
 		marginTop: height * 0.01,
 		padding: width * 0.01,
+		fontFamily: Fonts.rethinkSansRegular,
 	},
-
 });
 
 export default HomeScreen;
